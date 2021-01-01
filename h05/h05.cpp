@@ -9,10 +9,8 @@ using namespace std;
 string STUDENT = "WHO AM I?";  // Add your Canvas login name
 
 // Write your function here
-string toFrenchGender(const string& country)
-{
-    return country;
-}
+
+
 
 /////////////// Optional Student Code /////////////////
 int run()
