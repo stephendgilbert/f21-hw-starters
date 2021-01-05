@@ -13,7 +13,7 @@ clean:
 	rm -f core $(EXE) *.o
 
 lint:
-	clang++-6.0 --analyze -Xanalyzer -analyzer-output=text $(EXE).cpp
+	clang++ --analyze -Xanalyzer -analyzer-output=text $(EXE).cpp
 
 run: $(EXE)
 	./$(EXE)
@@ -21,10 +21,7 @@ run: $(EXE)
 debug: $(EXE)
 	debug50 ./$(EXE)
 
-stest: $(EXE)
-	@./$(EXE) $(EXE).tests
-
-test: $(EXE)
+est: $(EXE)
 	@git add $(SRC) > /dev/null 2> errors.txt; true
 	@git commit -m "auto commit `date +"%x %X"`"  > /dev/null 2>> errors.txt; true
 	@cat errors.txt 2> /dev/null; true
@@ -37,5 +34,5 @@ submit: $(EXE)
 	@git commit -m "auto commit `date +"%x %X"`"  > /dev/null 2>> errors.txt; true
 	@git push > /dev/null 2>> errors.txt; true
 	@cat errors.txt 2> /dev/null; true
-	@curl -A "$$CS150KEY" --data "id=$$CS150USER&sid=$$CS150SID&data=`tail -n 1 results.txt`" https://cs170-console.appspot.com/update ; true
+	@curl `cat /home/ubuntu/workspace/.submit``tail -n 1 results.txt` https://cs170-console.appspot.com/update ; true
 	@rm -rf errors.txt 2> /dev/null ; true
